@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    @extends('dashboard.header')
+    @include('dashboard.header')
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -74,14 +74,42 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link">
+                            <a href="{{ route('category.create') }}" class="nav-link">
+                                <i class="nav-icon fas fa-plus"></i>
+                                <p>
+                                    Create Category
+                                    {{-- <span class="right badge badge-danger">New</span> --}}
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('category.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
-                                    Widgets
-                                    <span class="right badge badge-danger">New</span>
+                                    Category List
+                                    {{-- <span class="right badge badge-danger">New</span> --}}
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="border border-grey">
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('item.create') }}" class="nav-link">
+                                <i class="nav-icon fas fa-plus"></i>
+                                <p>
+                                    Create Item
+                                    {{-- <span class="right badge badge-danger">New</span> --}}
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('item.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Item List
+                                    {{-- <span class="right badge badge-danger">New</span> --}}
                                 </p>
                             </a>
                         </li>
@@ -104,8 +132,7 @@
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
-
-                    <!-- /.row (main row) -->
+                    @yield('content')
                 </div><!-- /.container-fluid -->
             </section>
             <!-- /.content -->
