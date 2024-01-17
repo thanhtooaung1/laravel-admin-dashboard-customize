@@ -4,36 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-7">
-
-                @if (@session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ @session('success') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @elseif (@session('update'))
-                    <div class="alert alert-info alert-dismissible fade show" role="alert">
-                        {{ @session('update') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @elseif (@session('delete'))
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        {{ @session('delete') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @elseif (@session('error'))
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        {{ @session('error') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @endif
+                @include('layouts.alert')
                 <div class="card">
                     <div class="card-header bg-dark">
                         <div class="row justify-content-between">
@@ -57,21 +28,25 @@
                                         <td>{{ $category->name }}</td>
                                         <td>
                                             <div class="text-center">
-                                                <a class="btn btn-warning"
+                                                <a class="btn btn-outline-warning"
                                                     href="{{ route('category.edit', $category->id) }}"><i
-                                                        class="fas fa-edit"></i></a>
-                                                <a class="btn btn-info"
+                                                        class="fas fa-pen"></i></a>
+                                                {{-- <a class="btn btn-info"
                                                     href="{{ route('category.show', $category->id) }}"><i
-                                                        class="fas fa-info"></i></a>
+                                                        class="fas fa-info"></i></a> --}}
 
-                                                <form action="{{ route('category.destroy', $category->id) }}" method="POST"
-                                                    class="d-inline">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit"
-                                                        onclick="return confirm('Are you sure to delete?')"
-                                                        class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                                </form>
+                                                @if ($category->items->isEmpty())
+                                                    <form action="{{ route('category.destroy', $category->id) }}"
+                                                        method="POST" class="d-inline">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit"
+                                                            onclick="return confirm('Are you sure to delete?')"
+                                                            class="btn btn-outline-danger"><i
+                                                                class="fas fa-trash"></i></button>
+                                                    </form>
+                                                @endif
+
                                             </div>
                                         </td>
                                     </tr>

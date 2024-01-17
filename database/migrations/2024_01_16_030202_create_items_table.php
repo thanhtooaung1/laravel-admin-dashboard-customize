@@ -16,10 +16,10 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->integer('price');
-            $table->foreignIdFor(Category::class)->constrained()->restrictOnDelete();
-            $table->date('expire_date');
+            $table->foreignIdFor(Category::class);
+            $table->date('expire_date')->nullable(true);
             $table->timestamps();
         });
     }

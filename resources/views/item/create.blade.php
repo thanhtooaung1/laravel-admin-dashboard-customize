@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <div class="card">
                     <div class="card-header bg-dark">
                         {{-- <a href="{{ route('item.index') }}" class="btn btn-dark"><i class="fas fa-arrow-left"></i></a> --}}
@@ -43,8 +43,7 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="expire_date" class="form-label">Expire Date <small
-                                        class="text-danger">*</small></label>
+                                <label for="expire_date" class="form-label">Expire Date</label>
                                 <input type="date" class="form-control @error('expire_date') is-invalid @enderror"
                                     id="expire_date" name="expire_date" value="{{ old('expire_date') }}"
                                     placeholder="Enter price">

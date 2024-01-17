@@ -37,7 +37,7 @@
                                 <div class="fw-bold fs-4">Expire Date</div>
                             </div>
                             <div class="col-md-1">:</div>
-                            <div class="col-md-7">{{ $item->expire_date }}</div>
+                            <div class="col-md-7">{{ $item->expire_date ?? '--' }}</div>
                         </div>
                     </div>
                 </div>

@@ -46,8 +46,7 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="expire_date" class="form-label">Expire Date <small
-                                        class="text-danger">*</small></label>
+                                <label for="expire_date" class="form-label">Expire Date</label>
                                 <input type="date" class="form-control @error('expire_date') is-invalid @enderror"
                                     id="expire_date" name="expire_date" value="{{ old('expire_date', $item->expire_date) }}"
                                     placeholder="Enter price">

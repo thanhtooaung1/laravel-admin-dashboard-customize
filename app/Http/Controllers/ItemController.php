@@ -22,7 +22,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::all();
+        $items = Item::orderBy('name')->paginate(4);
         return view('item.index', compact('items'));
     }
 
@@ -50,8 +50,11 @@ class ItemController extends Controller
         $item->category_id = $request->category_id;
         $item->price = $request->price;
         $item->expire_date = $request->expire_date;
+
+
+
         $item->save();
-        return redirect()->route('item.index');
+        return redirect()->route('item.index')->with('success', 'New item is created successfully!');
     }
 
     /**
@@ -94,7 +97,7 @@ class ItemController extends Controller
         $item->category_id = $request->category_id;
         $item->expire_date = $request->expire_date;
         $item->update();
-        return redirect()->route('item.index');
+        return redirect()->route('item.index')->with('update', 'Item is updated successfully!');
     }
 
     /**
@@ -109,6 +112,6 @@ class ItemController extends Controller
         if ($item) {
             $item->delete();
         }
-        return redirect()->route('item.index');
+        return redirect()->route('item.index')->with('delete', 'Item is deleted successfully!');
     }
 }

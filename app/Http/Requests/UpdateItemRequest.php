@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateItemRequest extends FormRequest
 {
@@ -24,10 +25,10 @@ class UpdateItemRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
             'category_id' => 'required',
+            'name' => 'required|unique:items,name,' . $this->route('item'),
             'price' => 'required|numeric',
-            'expire_date' => 'date'
+            'expire_date' => 'nullable|date'
         ];
     }
 }

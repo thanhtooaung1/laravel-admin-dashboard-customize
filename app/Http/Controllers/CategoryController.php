@@ -7,6 +7,8 @@ use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use PhpParser\Node\Expr\Cast;
 
+use function PHPUnit\Framework\isEmpty;
+
 class CategoryController extends Controller
 {
 
@@ -99,8 +101,8 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         if ($category) {
-            if ($category->items) {
-                return redirect()->route('category.index')->with('error', 'Category cannot be deleted!');
+            if (!($category->items->isEmpty())) {
+                return redirect()->route('category.index')->with('error', 'Category cannot be deleted.It has child items!');
             }
             $category->delete();
         }
