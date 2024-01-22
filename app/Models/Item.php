@@ -13,4 +13,9 @@ class Item extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function getImageUrl()
+    {
+        return url('storage/gallery/' . $this->image);
+    }
 }

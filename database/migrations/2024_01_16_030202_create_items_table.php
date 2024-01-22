@@ -20,6 +20,7 @@ class CreateItemsTable extends Migration
             $table->integer('price');
             $table->foreignIdFor(Category::class);
             $table->date('expire_date')->nullable(true);
+            $table->string('image')->unique();
             $table->timestamps();
         });
     }

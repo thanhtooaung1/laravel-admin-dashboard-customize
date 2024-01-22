@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
 use App\Models\Category;
+use Illuminate\Support\Facades\Storage;
 
 class ItemController extends Controller
 {
@@ -51,8 +52,12 @@ class ItemController extends Controller
         $item->price = $request->price;
         $item->expire_date = $request->expire_date;
 
-
-
+        if ($request->image) {
+            $image = $request->image;
+            $imgName = uniqid("item_") . "." . $image->extension();
+            $image->storeAs('public/gallery', $imgName);
+            $item->image = $imgName;
+        }
         $item->save();
         return redirect()->route('item.index')->with('success', 'New item is created successfully!');
     }
@@ -96,6 +101,15 @@ class ItemController extends Controller
         $item->price = $request->price;
         $item->category_id = $request->category_id;
         $item->expire_date = $request->expire_date;
+
+        if ($request->image) {
+            $image = $request->image;
+            $imgName = uniqid("item_") . "." . $image->extension();
+            $image->storeAs('public/gallery', $imgName);
+            Storage::disk('public')->delete("gallery/" . $item->image);
+            $item->image = $imgName;
+        }
+
         $item->update();
         return redirect()->route('item.index')->with('update', 'Item is updated successfully!');
     }
@@ -110,6 +124,7 @@ class ItemController extends Controller
     {
         $item = Item::findOrFail($id);
         if ($item) {
+            Storage::disk('public')->delete("gallery/" . $item->image);
             $item->delete();
         }
         return redirect()->route('item.index')->with('delete', 'Item is deleted successfully!');

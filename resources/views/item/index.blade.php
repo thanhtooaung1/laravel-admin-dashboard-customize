@@ -20,6 +20,7 @@
                                     <th scope="col">Name</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Category</th>
+                                    <th scope="col">Image</th>
                                     <th scope="col">Expire Date</th>
                                     <th scope="col" class="text-center">Action</th>
                                 </tr>
@@ -31,6 +32,9 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->price }}</td>
                                         <td>{{ $item->category->name }}</td>
+                                        <td>
+                                            <img src="{{ $item->getImageUrl() }}" width="50" alt="">
+                                        </td>
                                         <td>{{ $item->expire_date ?? '--' }}</td>
                                         <td>
                                             <div class="text-center">

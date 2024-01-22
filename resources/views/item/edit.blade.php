@@ -11,7 +11,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('item.update', $item->id) }}">
+                        <form method="POST" action="{{ route('item.update', $item->id) }}" enctype="multipart/form-data">
                             @csrf
                             @method('put')
                             <div class="mb-3">
@@ -51,6 +51,15 @@
                                     id="expire_date" name="expire_date" value="{{ old('expire_date', $item->expire_date) }}"
                                     placeholder="Enter price">
                                 @error('expire_date')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="image" class="form-label">Item Image</label><br>
+                                <img src="{{ $item->getImageUrl() }}" alt="" width="50"><br><br>
+                                <input type="file" class="form-control @error('image') is-invalid @enderror"
+                                    id="image" name="image" value="{{ old('image') }}">
+                                @error('image')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>

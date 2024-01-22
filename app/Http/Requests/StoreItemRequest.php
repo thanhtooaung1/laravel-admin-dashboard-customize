@@ -28,7 +28,8 @@ class StoreItemRequest extends FormRequest
             'category_id' => 'required',
             'name' => 'required|unique:items',
             'price' => 'required|numeric',
-            'expire_date' => 'nullable|date'
+            'expire_date' => 'nullable|date',
+            'image' => 'required|image'
         ];
     }
 }

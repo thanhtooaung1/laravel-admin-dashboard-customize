@@ -19,7 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    {{-- <link rel="stylesheet" href="{{ asset('fontawesome/css/all.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('fontawesome/css/all.css') }}">
 </head>
 
 <body>
