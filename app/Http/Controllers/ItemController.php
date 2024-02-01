@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
 use App\Models\Category;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 
 class ItemController extends Controller
@@ -128,5 +129,10 @@ class ItemController extends Controller
             $item->delete();
         }
         return redirect()->route('item.index')->with('delete', 'Item is deleted successfully!');
+    }
+
+    public function responseText()
+    {
+        return response()->json("This is sample", 200);
     }
 }

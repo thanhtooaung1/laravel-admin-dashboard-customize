@@ -85,6 +85,23 @@
             @yield('content')
         </main>
     </div>
+
+    {{-- J-Query --}}
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $(".cart-btn").click(function() {
+                var item = `
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Product Three</td>
+                    <td class="text-end">20000</td>
+                </tr>
+                `;
+                $(".cart-table-body").append(item);
+            });
+        });
+    </script>
 </body>
 
 </html>
